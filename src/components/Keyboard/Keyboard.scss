@@ -1,0 +1,17 @@
+.outer-edge {
+  margin: 0 auto;
+  padding: 10px;
+}
+.inner-edge {
+  border: 1px solid red;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.box {
+  border: 1px solid #000;
+  width: 1028px + 20px;  // 27.2cm
+  height: 389px + 20px;  // 10.3cm
+  border-radius: 8px;
+}
