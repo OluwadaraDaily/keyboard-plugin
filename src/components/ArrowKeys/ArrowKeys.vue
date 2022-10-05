@@ -1,5 +1,7 @@
 <template>
-  <button class="tab-key">Tab</button>
+  <div>
+    Arrow Keys
+  </div>
 </template>
 
 <script>
@@ -8,5 +10,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './TabKey.scss'
+@import './ArrowKeys.scss'
 </style>

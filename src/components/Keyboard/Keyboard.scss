@@ -1,17 +1,21 @@
 .outer-edge {
   margin: 0 auto;
   padding: 10px;
+  .toggle {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 .inner-edge {
   border: 1px solid red;
   border-radius: 8px;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 8px;
 }
 .box {
   border: 1px solid #000;
-  width: 1028px + 20px;  // 27.2cm
+  width: 1028px + 20px + 15.1px;  // 27.2cm
   height: 389px + 20px;  // 10.3cm
   border-radius: 8px;
 }
