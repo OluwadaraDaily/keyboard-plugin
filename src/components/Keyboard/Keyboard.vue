@@ -136,7 +136,6 @@ export default {
       this.$emit('toggle-keyboard', this.showKeyboard)
     },
     keyClicked(val) {
-      console.log('Second stop....')
       this.$emit('click', val)
     }
   }

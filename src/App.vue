@@ -37,7 +37,6 @@ export default {
       this.$refs.keyboard.clickKey(e.key)
     },
     toggleKeyboard(showKeyboardVal) {
-      console.log('Toggle Value ==>', showKeyboardVal)
       const keyboardElement = document.getElementById('keyboard')
       if((showKeyboardVal && keyboardElement.classList.contains('lower-keyboard'))) {
         keyboardElement.classList.remove('lower-keyboard')
@@ -59,7 +58,6 @@ export default {
     },
     keyClicked(val) {
       const textAreaElement = document.getElementById('textarea')
-      console.log('Final Stop...')
       if(val.length === 1) {
         this.text += val
       }

@@ -89,7 +89,6 @@ export default {
   methods: {
     clickKey() {
       this.$emit('click', this.value)
-      console.log('Clicked...', this.value)
     }
   }
 }
