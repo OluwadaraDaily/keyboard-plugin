@@ -1,7 +1,8 @@
 <template>
   <div>
     <ArrowKeys v-if="value === 'arrows'" />
-    <div 
+    <div
+      id="key"
       class="key"
       :style="
       `width: ${width};
@@ -26,7 +27,7 @@ export default {
     values: {
       type: Object
     },
-    capsOn: {
+    shiftOn: {
       type: Boolean,
       default: false
     },
@@ -69,7 +70,13 @@ export default {
   },
   computed: {
     value() {
-      return this.capsOn ? this.values.upperCase : this.values.lowerCase
+      let value = ""
+      if(this.values.lowerCase.length === 1) {
+        value = this.shiftOn || this.capsLockOn ? this.values.upperCase : this.values.lowerCase
+      } else {
+        value = this.shiftOn ? this.values.upperCase : this.values.lowerCase
+      }
+      return value
     },
     width() {
       return this.tabKey ? '94.5px'
@@ -83,8 +90,8 @@ export default {
       return this.lastRow ? '68px' : '56.7px'
     },
     textCase() {
-      return this.capsLockOn || this.capsOn ? 'uppercase' : 'lowercase'
-    }
+      return this.capsLockOn || this.shiftOn ? 'uppercase' : 'lowercase'
+    },
   },
   methods: {
     clickKey() {

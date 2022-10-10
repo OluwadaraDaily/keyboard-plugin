@@ -52,16 +52,17 @@ const firstRow = [
     upperCase: '+'
   },
   {
-    lowerCase: 'backspace',
-    upperCase: 'backspace',
-    deleteKey: true
+    lowerCase: 'Backspace',
+    upperCase: 'Backspace',
+    deleteKey: true,
+    key: ''
   }
 ]
 
 const secondRow = [
   {
-    lowerCase: 'tab',
-    upperCase: 'tab',
+    lowerCase: 'Tab',
+    upperCase: 'Tab',
     tabKey: true
   },
   {
@@ -120,8 +121,8 @@ const secondRow = [
 
 const thirdRow = [
   {
-    lowerCase: 'caps lock',
-    upperCase: 'caps lock',
+    lowerCase: 'CapsLock',
+    upperCase: 'CapsLock',
     capsLockKey: true
   },
   {
@@ -169,16 +170,16 @@ const thirdRow = [
     upperCase: '"'
   },
   {
-    lowerCase: 'enter',
-    upperCase: 'enter',
+    lowerCase: 'Enter',
+    upperCase: 'Enter',
     enterKey: true
   },
 ]
 
 const fourthRow = [
   {
-    lowerCase: 'shift',
-    upperCase: 'shift',
+    lowerCase: 'Shift',
+    upperCase: 'Shift',
     shiftKey: true
   },
   {
@@ -222,17 +223,18 @@ const fourthRow = [
     upperCase: '?'
   },
   {
-    lowerCase: 'shift',
-    upperCase: 'shift',
+    lowerCase: 'rShift',
+    upperCase: 'rShift',
     shiftKey: true
   }
 ]
 
 const fifthRow = [
   {
-    lowerCase: 'ctrl',
-    upperCase: 'ctrl',
-    ctrlKey: true
+    lowerCase: 'Ctrl',
+    upperCase: 'Ctrl',
+    ctrlKey: true,
+    key: 'Control'
   },
   {
     lowerCase: 'fn',
@@ -242,11 +244,12 @@ const fifthRow = [
   {
     lowerCase: 'win',
     upperCase: 'win',
-    winKey: true
+    winKey: true,
+    key: 'Meta'
   },
   {
-    lowerCase: 'alt',
-    upperCase: 'alt',
+    lowerCase: 'Alt',
+    upperCase: 'Alt',
     altKey: true
   },
   {
@@ -255,14 +258,15 @@ const fifthRow = [
     spaceBarKey: true
   },
   {
-    lowerCase: 'alt',
-    upperCase: 'alt',
+    lowerCase: 'rAlt',
+    upperCase: 'rAlt',
     altKey: true
   },
   {
-    lowerCase: 'ctrl',
-    upperCase: 'ctrl',
-    ctrlKey: true
+    lowerCase: 'rCtrl',
+    upperCase: 'rCtrl',
+    ctrlKey: true,
+    key: 'Control'
   },
   {
     lowerCase: 'arrows',
@@ -270,4 +274,8 @@ const fifthRow = [
   }
 ]
 
-module.exports = { firstRow, secondRow, thirdRow, fourthRow, fifthRow }
+const allRows = [...firstRow, ...secondRow, ...thirdRow, ...fourthRow, ...fifthRow]
+
+const allLowerCases = allRows.map(item => item.lowerCase)
+
+module.exports = { firstRow, secondRow, thirdRow, fourthRow, fifthRow, allLowerCases }
