@@ -4,6 +4,7 @@
       <textarea 
         @keydown="onKeyDown"
         @focus.once="onFocus"
+        v-focused
         v-model="text"
         rows="5"
         cols="10"
@@ -11,25 +12,23 @@
       >
       </textarea>
     </div>
-    <transition class="keyboard">
-      <div class="keyboard" id="keyboard">
-        <div v-show="textareaFocused">
-          <button class="bg-gray-900 hover:bg-gray-400 text-white font-bold py-2 px-4 border-b-4 border-gray-700 hover:border-white-500 rounded" v-if="showKeyboard" @click="toggleShowKeyboard">
-            Hide Keyboard
-          </button>
-          <button class="bg-gray-900 hover:bg-gray-400 text-white font-bold py-2 px-4 border-b-4 border-gray-700 hover:border-white-500 rounded" v-else @click="toggleShowKeyboard">
-            Show Keyboard
-          </button>
-        </div>
-        <Keyboard 
-          :shiftOn="shiftOn"
-          :capsLockOn="capsLockOn"
-          ref="keyboard" 
-          @click="keyClicked"
-          v-show="showKeyboard"
-        />
+    <div class="keyboard" id="keyboard">
+      <div v-show="textareaFocused">
+        <button class="px-4 py-2 font-bold text-white bg-gray-900 border-b-4 border-gray-700 rounded hover:bg-gray-400 hover:border-white-500" v-if="showKeyboard" @click="toggleShowKeyboard">
+          Hide Keyboard
+        </button>
+        <button class="px-4 py-2 font-bold text-white bg-gray-900 border-b-4 border-gray-700 rounded hover:bg-gray-400 hover:border-white-500" v-else @click="toggleShowKeyboard">
+          Show Keyboard
+        </button>
       </div>
-    </transition>
+      <Keyboard 
+        :shiftOn="shiftOn"
+        :capsLockOn="capsLockOn"
+        ref="keyboard" 
+        @click="keyClicked"
+        v-show="showKeyboard"
+      />
+    </div>
   </div>
 </template>
 
@@ -46,7 +45,8 @@ export default {
       capsLockOn: false,
       text: '',
       showKeyboard: false,
-      textareaFocused: false
+      textareaFocused: false,
+      test: false
     }
   },
   methods: {
@@ -121,7 +121,7 @@ export default {
 
     .keyboard {
       position: absolute;
-      bottom: 0;
+      bottom: 100px;
       right: 0;
       left: 0;
     }

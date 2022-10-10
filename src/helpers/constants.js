@@ -267,10 +267,6 @@ const fifthRow = [
     upperCase: 'rCtrl',
     ctrlKey: true,
     key: 'Control'
-  },
-  {
-    lowerCase: 'arrows',
-    upperCase: 'arrows',
   }
 ]
 
