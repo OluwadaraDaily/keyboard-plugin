@@ -20,3 +20,23 @@
           box-shadow: inset 0px 0px 5px #c1c1c1;
    outline: none;
 }
+
+.active {
+  animation-name: highlight;
+  animation-duration: .01s;
+}
+
+@keyframes highlight {
+  0%   {
+    background: none;
+    box-shadow: none;
+  }
+  50%  {
+    background: #e5e5e5;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+  }
+  100% {
+    background: #ededed;
+    box-shadow: none;
+  }
+}

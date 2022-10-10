@@ -6,85 +6,80 @@
   <!-- Shift, 3rd row of letters, 3 special chars, Shift -->
   <!-- Control, Alt, Windows Key, Fn key, Space bar, Ctrl, Alt, four arrows -->
   <div class="outer-edge box">
-    <div class="toggle">
-      <div class="down-toggle" v-show="showKeyboard" @click="toggleKeyboard">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-          <path fill-rule="evenodd" d="M12 2.25a.75.75 0 01.75.75v16.19l6.22-6.22a.75.75 0 111.06 1.06l-7.5 7.5a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 111.06-1.06l6.22 6.22V3a.75.75 0 01.75-.75z" clip-rule="evenodd" />
-        </svg>
-      </div>
-      <div class="up-toggle" v-show="!showKeyboard" @click="toggleKeyboard">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-          <path fill-rule="evenodd" d="M12 20.25a.75.75 0 01-.75-.75V6.31l-5.47 5.47a.75.75 0 01-1.06-1.06l6.75-6.75a.75.75 0 011.06 0l6.75 6.75a.75.75 0 11-1.06 1.06l-5.47-5.47V19.5a.75.75 0 01-.75.75z" clip-rule="evenodd" />
-        </svg>
-      </div>
-    </div>
     <div class="inner-edge">
       <!-- First Row -->
       <Key 
         v-for="(item, index) in firstRow" 
-        :key="`r1-${index}`" 
         :id="item.lowerCase"
+        :key="`r1-${index}`"
         :values="item" 
-        :capsOn="capsOn"
+        :shiftOn="shiftOn"
         :deleteKey="item.deleteKey ? true : false"
         :tabKey="item.tabKey ? true : false"
         :shiftKey="item.shiftKey ? true : false"
         :enterKey="item.enterKey ? true : false"
         :capsLockKey="item.capsLockKey ? true : false"
         @click="keyClicked"
+        ref="key"
       />
       <!-- Second Row -->
       <Key 
         v-for="(item, index) in secondRow" 
-        :key="`r2-${index}`" 
         :id="item.lowerCase"
+        :key="`r2-${index}`" 
         :values="item" 
-        :capsOn="capsOn"
+        :shiftOn="shiftOn"
+        :capsLockOn="capsLockOn"
         :deleteKey="item.deleteKey ? true : false"
         :tabKey="item.tabKey ? true : false"
         :shiftKey="item.shiftKey ? true : false"
         :enterKey="item.enterKey ? true : false"
         :capsLockKey="item.capsLockKey ? true : false"
         @click="keyClicked"
+        ref="key"
       />
 
       <!-- Third Row -->
       <Key 
-        v-for="(item, index) in thirdRow" 
-        :key="`r3-${index}`"
+        v-for="(item, index) in thirdRow"
         :id="item.lowerCase"
+        :key="`r3-${index}`"
         :values="item" 
-        :capsOn="capsOn"
+        :shiftOn="shiftOn"
+        :capsLockOn="capsLockOn"
         :deleteKey="item.deleteKey ? true : false"
         :tabKey="item.tabKey ? true : false"
         :shiftKey="item.shiftKey ? true : false"
         :enterKey="item.enterKey ? true : false"
         :capsLockKey="item.capsLockKey ? true : false"
         @click="keyClicked"
+        ref="key"
       />
 
       <!-- Fourth Row -->
       <Key 
-        v-for="(item, index) in fourthRow" 
-        :key="`r4-${index}`"
+        v-for="(item, index) in fourthRow"
         :id="item.lowerCase"
+        :key="`r4-${index}`"
         :values="item" 
-        :capsOn="capsOn"
+        :shiftOn="shiftOn"
+        :capsLockOn="capsLockOn"
         :deleteKey="item.deleteKey ? true : false"
         :tabKey="item.tabKey ? true : false"
         :shiftKey="item.shiftKey ? true : false"
         :enterKey="item.enterKey ? true : false"
         :capsLockKey="item.capsLockKey ? true : false"
         @click="keyClicked"
+        ref="key"
       />
 
       <!-- Fifth Row -->
       <Key 
-        v-for="(item, index) in fifthRow" 
-        :key="`r5-${index}`"
+        v-for="(item, index) in fifthRow"
         :id="item.lowerCase"
+        :key="`r5-${index}`"
         :values="item" 
-        :capsOn="capsOn"
+        :shiftOn="shiftOn"
         :deleteKey="item.deleteKey ? true : false"
         :tabKey="item.tabKey ? true : false"
         :shiftKey="item.shiftKey ? true : false"
@@ -94,6 +89,7 @@
         :spaceBarKey="item.spaceBarKey ? true: false"
         :lastRow="true"
         @click="keyClicked"
+        ref="key"
       />
     </div>
   </div>
@@ -113,31 +109,61 @@ export default {
       secondRow,
       thirdRow,
       fourthRow,
-      fifthRow,
-      showKeyboard: true
+      fifthRow
     }
   },
   props: {
-    capsOn: {
+    shiftOn: {
+      type: Boolean,
+      default: false
+    },
+    capsLockOn: {
       type: Boolean,
       default: false
     }
   },
   methods: {
-    clickKey(id) {
-      const element = document.getElementById(`${id}`).children ? document.getElementById(`${id}`).children : document.getElementById(`${id}`)
-      if(element.length) {
-        console.log('ELEMENT ==>', element[0])
-        // element[0].click()
+    clickSystemKeyboard(id, code) {
+      // Exceptions => Shift, Tab, CapsLock, Control, Alt, Meta, Enter, Backspace
+      console.log('ID =>', id)
+      console.log('Code =>', code)
+      let element
+
+      if(document.getElementById(`${id}`)) {
+        if (id === 'Shift') {
+          element = code === 'ShiftLeft' ? document.getElementById(`Shift`).children : document.getElementById(`rShift`).children
+        } 
+        else if (id === 'Control') {
+          element = code === 'ControlLeft' ? document.getElementById(`Ctrl`).children : document.getElementById(`rCtrl`).children
+        }
+        else if(id === 'Alt') {
+          element = code === 'AltLeft' ? document.getElementById(`Alt`).children : document.getElementById(`rAlt`).children
+        }   
+        else {
+          element = document.getElementById(`${id}`).children
+        }
+      } else {
+        switch(id) {
+          case 'Meta':
+            element = document.getElementById(`win`).children
+            break;
+          case 'Control':
+            element = document.getElementById(`ctrl`).children
+            break;
+          case ' ':
+            element = document.getElementById(`space`).children
+            break;
+        }
       }
-    },
-    toggleKeyboard() {
-      this.showKeyboard = !this.showKeyboard
-      this.$emit('toggle-keyboard', this.showKeyboard)
+      element[0].classList.add('active')
+      setTimeout(() => {
+        element[0].classList.remove('active')
+      }, 50)
     },
     keyClicked(val) {
       this.$emit('click', val)
-    }
+    },
+
   }
 }
 </script>
