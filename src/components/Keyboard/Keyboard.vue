@@ -125,8 +125,6 @@ export default {
   methods: {
     clickSystemKeyboard(id, code) {
       // Exceptions => Shift, Tab, CapsLock, Control, Alt, Meta, Enter, Backspace
-      console.log('ID =>', id)
-      console.log('Code =>', code)
       let element
 
       if(document.getElementById(`${id}`)) {
