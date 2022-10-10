@@ -5,8 +5,8 @@
   <!-- Caps Lock, 2nd row of letters, 2 special chars, Enter key -->
   <!-- Shift, 3rd row of letters, 3 special chars, Shift -->
   <!-- Control, Alt, Windows Key, Fn key, Space bar, Ctrl, Alt, four arrows -->
-  <div class="outer-edge box">
-    <div class="inner-edge">
+  <div class="box outer-edge">
+    <div class="flex flex-wrap gap-3">
       <!-- First Row -->
       <Key 
         v-for="(item, index) in firstRow" 
@@ -126,7 +126,6 @@ export default {
     clickSystemKeyboard(id, code) {
       // Exceptions => Shift, Tab, CapsLock, Control, Alt, Meta, Enter, Backspace
       let element
-
       if(document.getElementById(`${id}`)) {
         if (id === 'Shift') {
           element = code === 'ShiftLeft' ? document.getElementById(`Shift`).children : document.getElementById(`rShift`).children
@@ -153,9 +152,9 @@ export default {
             break;
         }
       }
-      element[0].classList.add('active')
+      element[0].classList.add('bg-slate-300')
       setTimeout(() => {
-        element[0].classList.remove('active')
+        element[0].classList.remove('bg-slate-300')
       }, 50)
     },
     keyClicked(val) {

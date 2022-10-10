@@ -1,6 +1,6 @@
 .outer-edge {
   margin: 0 auto;
-  padding: 10px;
+  padding: 5px 0 0 10px;
   .toggle {
     display: flex;
     justify-content: flex-end;
@@ -15,7 +15,7 @@
 }
 .box {
   border: 1px solid #000;
-  width: 1028px + 20px + 15.1px;  // 27.2cm
-  height: 389px + 20px;  // 10.3cm
+  width: 1020px;  // 27.2cm
+  height: 340px;  // 10.3cm
   border-radius: 8px;
 }

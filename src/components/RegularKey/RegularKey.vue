@@ -1,15 +1,13 @@
 <template>
   <div>
-    <ArrowKeys v-if="value === 'arrows'" />
     <div
       id="key"
-      class="key"
+      class="flex items-center justify-center font-semibold text-gray-800 bg-white border border-gray-400 rounded column h-14 hover:bg-gray-100"
       :style="
       `width: ${width};
       text-transform: ${textCase}
       height: ${height}`
       "
-      v-else
       @click="clickKey()"
     >
       {{value}}
@@ -18,10 +16,8 @@
 </template>
 
 <script>
-import ArrowKeys from '../ArrowKeys/ArrowKeys.vue';
 export default {
   components:  {
-    ArrowKeys
   },
   props: {
     values: {
@@ -80,8 +76,9 @@ export default {
     },
     width() {
       return this.tabKey ? '94.5px'
-      : this.enterKey || this.deleteKey || this.capsLockKey ? '113.4px' 
-      : this.shiftKey ? '162.5px' 
+      : this.deleteKey || this.capsLockKey ? '94.5px'
+      : this.enterKey ? '128.5px'
+      : this.shiftKey ? '147.4px' 
       : this.ctrlKey ? '75.6px'
       : this.spaceBarKey ? '343.9px'
       : '56.7px';
