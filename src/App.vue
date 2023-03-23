@@ -62,7 +62,6 @@ export default {
        e.getModifierState('CapsLock') ? this.shiftOn = true : this.shiftOn = false
     },
     clickSystemKeyboard(e) {
-      console.log("I CLICKED HERE =>", e)
       this.$refs.keyboard.clickSystemKeyboard(e.key, e.code)
     },
     onFocus() {

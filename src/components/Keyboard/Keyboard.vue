@@ -125,7 +125,6 @@ export default {
   methods: {
     clickSystemKeyboard(id, code) {
       // Exceptions => Shift, Tab, CapsLock, Control, Alt, Meta, Enter, Backspace
-      console.log("KEY =>", id)
       let element
       if(document.getElementById(`${id}`)) {
         if (id === 'Shift') {
@@ -153,9 +152,11 @@ export default {
             break;
         }
       }
+      element[0].classList.remove('bg-white')
       element[0].classList.add('bg-slate-300')
       setTimeout(() => {
         element[0].classList.remove('bg-slate-300')
+        element[0].classList.add('bg-white')
       }, 50)
     },
     keyClicked(val) {
