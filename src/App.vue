@@ -4,7 +4,6 @@
       <textarea 
         @keydown="onKeyDown"
         @focus.once="onFocus"
-        v-focused
         v-model="text"
         rows="5"
         cols="10"
@@ -63,6 +62,7 @@ export default {
        e.getModifierState('CapsLock') ? this.shiftOn = true : this.shiftOn = false
     },
     clickSystemKeyboard(e) {
+      console.log("I CLICKED HERE =>", e)
       this.$refs.keyboard.clickSystemKeyboard(e.key, e.code)
     },
     onFocus() {
